@@ -1,0 +1,703 @@
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateCompanies (20230617180119)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "companies" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "address" varchar, "contact" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230617180119"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2023-06-17 18:05:17.775418"], ["updated_at", "2023-06-17 18:05:17.775418"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateMembers (20230617180559)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "members" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "username" varchar, "password" varchar, "email" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230617180559"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreatePermissions (20230617180620)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "permissions" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "description" varchar, "actions" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230617180620"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateSearches (20230617180635)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "searches" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230617180635"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateAuthentications (20230617180654)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "authentications" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "username" varchar, "password_hash" varchar, "token" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230617180654"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddCompanyNameAndListingStatusToCompanies (20230618043053)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[35mALTER TABLE "companies" ADD "company_name" varchar[0m
+  [1m[35m (0.1ms)[0m  [1m[35mALTER TABLE "companies" ADD "listing_status" varchar[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230618043053"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mCompany Load (0.2ms)[0m  [1m[34mSELECT "companies".* FROM "companies"[0m
+  [1m[36mCompany Load (0.3ms)[0m  [1m[34mSELECT "companies".* FROM "companies"[0m
+  [1m[36mCompany Load (0.9ms)[0m  [1m[34mSELECT "companies".* FROM "companies"[0m
+  [1m[36mCompany Load (0.3ms)[0m  [1m[34mSELECT "companies".* FROM "companies"[0m
+  [1m[36mCompany Load (0.1ms)[0m  [1m[34mSELECT "companies".* FROM "companies"[0m
+  [1m[36mCompany Load (0.4ms)[0m  [1m[34mSELECT "companies".* FROM "companies"[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to AddCodeToCompanies (20230618051420)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.1ms)[0m  [1m[35mALTER TABLE "companies" ADD "企業コード" varchar[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230618051420"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to AddNameToCompanies (20230618052109)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mALTER TABLE "companies" ADD "企業名" varchar[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230618052109"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to AddListingStatusToCompanies (20230618052324)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mALTER TABLE "companies" ADD "上場状況" varchar[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230618052324"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mCompany Load (0.1ms)[0m  [1m[34mSELECT "companies".* FROM "companies"[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mCompany Load (0.4ms)[0m  [1m[34mSELECT "companies".* FROM "companies"[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateStationData (20230618113821)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "station_data" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230618113821"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateDummyCompanyInformation (20230618144250)
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateDummyCompanyInformation (20230618144250)
+  [1m[35m (1.4ms)[0m  [1m[35mCREATE TABLE "dummy_company_informations" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "station_g_cd" varchar, "station_name" varchar, "line_cd" varchar, "pref_cd" varchar, "address" varchar, "lon" varchar, "lat" varchar)[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.2ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "202709"], ["station_name", "煌星商事"], ["line_cd", "上場"], ["pref_cd", "ｺｳｾｲｼｮｳｼﾞ"], ["address", "689-1221"], ["lon", "鳥取県鳥取市用瀬町古用瀬４５０３３"], ["lat", "11,213,880"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "930562"], ["station_name", "虹架橋技研"], ["line_cd", "未上場"], ["pref_cd", "ﾆｼﾞｶｷｮｳｷﾞｹﾝ"], ["address", "879-0443"], ["lon", "大分県宇佐市葛原１－１７－１"], ["lat", "10,957,511"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.6ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "821518"], ["station_name", "輝石化学"], ["line_cd", "未上場"], ["pref_cd", "ｷｾｷｶｶﾞｸ"], ["address", "692-0404"], ["lon", "島根県安来市広瀬町広瀬３８２１４"], ["lat", "31,389,171"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.2ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "531851"], ["station_name", "銀翔通信"], ["line_cd", "未上場"], ["pref_cd", "ｷﾞﾝｼｮｳﾂｳｼﾝ"], ["address", "399-0424"], ["lon", "長野県上伊那郡辰野町赤羽１－１５－６"], ["lat", "30,067,661"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "841756"], ["station_name", "瑞宝電機"], ["line_cd", "未上場"], ["pref_cd", "ｽﾞｲﾎｳﾃﾞﾝｷ"], ["address", "515-1502"], ["lon", "三重県松阪市飯高町宮前４４９７２"], ["lat", "32,674,778"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "561768"], ["station_name", "千羽鶴製作所"], ["line_cd", "未上場"], ["pref_cd", "ｾﾝﾊﾞﾂﾙｾｲｻｸｼﾞｮ"], ["address", "220-0002"], ["lon", "神奈川県横浜市西区南軽井沢４５０００"], ["lat", "3,961,313"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "993327"], ["station_name", "紅葉情報システムズ"], ["line_cd", "未上場"], ["pref_cd", "ｺｳﾖｳｼﾞｮｳﾎｳｼｽﾃﾑｽﾞ"], ["address", "689-1466"], ["lon", "鳥取県八頭郡智頭町波多３６９９９"], ["lat", "10,775,753"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "241757"], ["station_name", "白虹電気"], ["line_cd", "上場"], ["pref_cd", "ﾊｸｺｳﾃﾞﾝｷ"], ["address", "188-0011"], ["lon", "東京都西東京市田無町３７１７５フォレスト田無町３１４"], ["lat", "50,343,197"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "804472"], ["station_name", "百福物産"], ["line_cd", "上場"], ["pref_cd", "ﾋｬｸﾌｸﾌﾞｯｻﾝ"], ["address", "761-1616"], ["lon", "香川県高松市菅沢町３－１４－６"], ["lat", "1,240,747"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "170412"], ["station_name", "光輝総合病院"], ["line_cd", "上場"], ["pref_cd", "ｺｳｷｿｳｺﾞｳﾋﾞｮｳｲﾝ"], ["address", "896-0075"], ["lon", "鹿児島県いちき串木野市金山４－２０－１"], ["lat", "19,118,813"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "193404"], ["station_name", "桜花製薬"], ["line_cd", "未上場"], ["pref_cd", "ｻｸﾗｶｾｲﾔｸ"], ["address", "038-0054"], ["lon", "青森県青森市奥内４４９３５奥内プラザ４０７"], ["lat", "3,757,346"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "976311"], ["station_name", "鳳凰金属"], ["line_cd", "未上場"], ["pref_cd", "ﾎｳｵｳｷﾝｿﾞｸ"], ["address", "668-0863"], ["lon", "兵庫県豊岡市上鉢山２－２０－１２"], ["lat", "32,364,939"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "852353"], ["station_name", "流星情報通信"], ["line_cd", "上場"], ["pref_cd", "ﾘｭｳｾｲｼﾞｮｳﾎｳﾂｳｼﾝ"], ["address", "919-0526"], ["lon", "福井県坂井市坂井町上兵庫４５０２３坂井町上兵庫ハウス４００"], ["lat", "9,310,929"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "619971"], ["station_name", "東方電子"], ["line_cd", "上場"], ["pref_cd", "ﾄｳﾎｳﾃﾞﾝｼ"], ["address", "929-0302"], ["lon", "石川県河北郡津幡町木ノ窪３７０２９"], ["lat", "31,535,195"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "330246"], ["station_name", "金獅子商事"], ["line_cd", "未上場"], ["pref_cd", "ｷﾝｼｼｼｮｳｼﾞ"], ["address", "339-0023"], ["lon", "埼玉県さいたま市岩槻区野孫３７８３４ガーデン野孫１０１"], ["lat", "67,027,372"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "316939"], ["station_name", "銀鳩興産"], ["line_cd", "上場"], ["pref_cd", "ｷﾞﾝﾊﾄｳｺｳｻﾝ"], ["address", "590-0957"], ["lon", "大阪府堺市堺区中之町西４－２０－１"], ["lat", "15,700,089"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "151277"], ["station_name", "虹彩エンジニアリング"], ["line_cd", "上場"], ["pref_cd", "ｺｳｻｲｴﾝｼﾞﾆｱﾘﾝｸﾞ"], ["address", "562-0046"], ["lon", "大阪府箕面市桜ケ丘３８１５８"], ["lat", "16,123,952"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "605984"], ["station_name", "千代田物流"], ["line_cd", "上場"], ["pref_cd", "ﾁﾖﾀﾞﾌﾞﾂﾘｭｳ"], ["address", "719-3126"], ["lon", "岡山県真庭市向津矢４４９９６"], ["lat", "15,480,637"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "891183"], ["station_name", "三光繊維"], ["line_cd", "上場"], ["pref_cd", "ｻﾝｺｳｾﾝｲ"], ["address", "327-0842"], ["lon", "栃木県佐野市奈良渕町３７３９１奈良渕町キャッスル１１４"], ["lat", "39,029,169"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "138779"], ["station_name", "一真堂書店"], ["line_cd", "未上場"], ["pref_cd", "ｲｯｼﾝﾄﾞｳｼｮﾃﾝ"], ["address", "794-2541"], ["lon", "愛媛県越智郡上島町魚島二番耕地３８２７２"], ["lat", "386,101"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "970062"], ["station_name", "昭和電機工業"], ["line_cd", "上場"], ["pref_cd", "ｼｮｳﾜﾃﾞﾝｷｺｳｷﾞｮｳ"], ["address", "108-0073"], ["lon", "東京都港区三田１－１８－１４三田マンション４１６"], ["lat", "1,899,826"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "157605"], ["station_name", "西山商事"], ["line_cd", "未上場"], ["pref_cd", "ﾆｼﾔﾏｼｮｳｼﾞ"], ["address", "966-0921"], ["lon", "福島県喜多方市慶徳町松舞家３－１４－１３"], ["lat", "18,659,990"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "666817"], ["station_name", "北園物産"], ["line_cd", "上場"], ["pref_cd", "ｷﾀｿﾉﾌﾞｯｻﾝ"], ["address", "365-0066"], ["lon", "埼玉県鴻巣市三ツ木２－１８－１８ダイヤモンド三ツ木１０３"], ["lat", "31,280,067"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "462874"], ["station_name", "南風貿易"], ["line_cd", "上場"], ["pref_cd", "ﾐﾅﾐｶｾﾞﾎﾞｳｴｷ"], ["address", "417-0834"], ["lon", "静岡県富士市西柏原新田３７４４６"], ["lat", "30,935,136"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "655322"], ["station_name", "東京パイプ"], ["line_cd", "上場"], ["pref_cd", "ﾄｳｷｮｳﾊﾟｲﾌﾟ"], ["address", "515-2513"], ["lon", "三重県津市一志町虹が丘２－１８－８一志町虹が丘レジデンス４１４"], ["lat", "57,625,474"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "255653"], ["station_name", "月光百貨店"], ["line_cd", "上場"], ["pref_cd", "ｹﾞﾂｺｳﾋｬｯｶﾃﾝ"], ["address", "716-0024"], ["lon", "岡山県高梁市大工町４４９６３"], ["lat", "29,224,614"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "853523"], ["station_name", "星海興業"], ["line_cd", "未上場"], ["pref_cd", "ｾｲｶｲｺｳｷﾞｮｳ"], ["address", "637-1105"], ["lon", "奈良県吉野郡十津川村林３８１１５林プレイス２０６"], ["lat", "61,177,468"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "194826"], ["station_name", "鳳来産業"], ["line_cd", "未上場"], ["pref_cd", "ﾎｳﾗｲｻﾝｷﾞｮｳ"], ["address", "921-8122"], ["lon", "石川県金沢市清瀬町２－１５－２"], ["lat", "6,378,560"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "344113"], ["station_name", "緑風建設"], ["line_cd", "未上場"], ["pref_cd", "ﾐﾄﾞﾘｶｾﾞｹﾝｾﾂ"], ["address", "649-7114"], ["lon", "和歌山県伊都郡かつらぎ町西飯降４－１７－１０ロイヤルパレス西飯降３００"], ["lat", "96,663,278"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "202728"], ["station_name", "大和銀行"], ["line_cd", "上場"], ["pref_cd", "ﾀﾞｲﾜｷﾞﾝｺｳ"], ["address", "936-0811"], ["lon", "富山県滑川市大浦４４９６７テラス大浦２１２"], ["lat", "14,491,979"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "607139"], ["station_name", "虹川商事"], ["line_cd", "未上場"], ["pref_cd", "ﾆｼﾞｶﾜｼｮｳｼﾞ"], ["address", "620-0967"], ["lon", "京都府福知山市畑中４－１４－１"], ["lat", "864,872"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "625571"], ["station_name", "桜庭物産"], ["line_cd", "上場"], ["pref_cd", "ｻｸﾗﾊﾞﾌﾞｯｻﾝ"], ["address", "518-1401"], ["lon", "三重県伊賀市千戸４４９７６ゴールデン千戸１１５"], ["lat", "9,777,091"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "121717"], ["station_name", "陽光銀行"], ["line_cd", "未上場"], ["pref_cd", "ﾖｳｺｳｷﾞﾝｺｳ"], ["address", "817-1412"], ["lon", "長崎県対馬市峰町佐賀１－１４－５"], ["lat", "41,825,299"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.2ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "840039"], ["station_name", "名門製紙"], ["line_cd", "上場"], ["pref_cd", "ﾒｲﾓﾝｾｲｼ"], ["address", "936-0811"], ["lon", "富山県滑川市大浦３－１３－１３"], ["lat", "24,114,691"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "474508"], ["station_name", "新星電子"], ["line_cd", "未上場"], ["pref_cd", "ｼﾝｾｲﾃﾞﾝｼ"], ["address", "624-0118"], ["lon", "京都府舞鶴市西方寺３８１２１"], ["lat", "22,007,235"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "149317"], ["station_name", "雲海通信"], ["line_cd", "未上場"], ["pref_cd", "ｳﾝｶｲﾂｳｼﾝ"], ["address", "907-0004"], ["lon", "沖縄県石垣市登野城３８０２２登野城マンション４０２"], ["lat", "30,840,746"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "518276"], ["station_name", "白鳥興産"], ["line_cd", "上場"], ["pref_cd", "ﾊｸﾁｮｳｺｳｻﾝ"], ["address", "689-1412"], ["lon", "鳥取県八頭郡智頭町芦津３７５４３プラチナ芦津２１５"], ["lat", "30,302,166"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "630284"], ["station_name", "東洋繊維"], ["line_cd", "未上場"], ["pref_cd", "ﾄｳﾖｳｾﾝｲ"], ["address", "270-1354"], ["lon", "千葉県印西市武西４５００４武西メゾン４１０"], ["lat", "24,178,018"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "973830"], ["station_name", "緑葉酒造"], ["line_cd", "上場"], ["pref_cd", "ﾘｮｸﾖｳｼｭｿﾞｳ"], ["address", "409-2103"], ["lon", "山梨県南巨摩郡南部町万沢３７４２４"], ["lat", "1,141,220"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.2ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "748708"], ["station_name", "黒龍貿易"], ["line_cd", "未上場"], ["pref_cd", "ｺｸﾘｭｳﾎﾞｳｴｷ"], ["address", "479-0075"], ["lon", "愛知県常滑市菅場２－１６－１０"], ["lat", "13,396,288"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "465081"], ["station_name", "大樹製薬"], ["line_cd", "未上場"], ["pref_cd", "ﾀﾞｲｼﾞｭｾｲﾔｸ"], ["address", "865-0047"], ["lon", "熊本県玉名市川島２－１３－２"], ["lat", "2,137,399"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "416279"], ["station_name", "金星銀行"], ["line_cd", "未上場"], ["pref_cd", "ｷﾝｾｲｷﾞﾝｺｳ"], ["address", "840-0516"], ["lon", "佐賀県佐賀市富士町梅野１－１８－１４"], ["lat", "6,666,688"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.2ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "129629"], ["station_name", "寿川建設"], ["line_cd", "上場"], ["pref_cd", "ｼﾞｭｶﾜｹﾝｾﾂ"], ["address", "515-2303"], ["lon", "三重県松阪市嬉野宮古町３８２７４"], ["lat", "71,414,131"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "507923"], ["station_name", "春日物流"], ["line_cd", "上場"], ["pref_cd", "ｶｽｶﾞﾌﾞﾂﾘｭｳ"], ["address", "927-1442"], ["lon", "石川県珠洲市狼煙新町４５００３"], ["lat", "8,037,338"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.2ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "798988"], ["station_name", "百瀬商事"], ["line_cd", "未上場"], ["pref_cd", "ﾓﾓｾｼｮｳｼﾞ"], ["address", "910-3514"], ["lon", "福井県福井市水谷町１－１８－１８"], ["lat", "21,342,801"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "620969"], ["station_name", "神風金属"], ["line_cd", "上場"], ["pref_cd", "ｶﾐｶｾﾞｷﾝｿﾞｸ"], ["address", "400-0834"], ["lon", "山梨県甲府市落合町１－１７－７落合町ヒル２０９"], ["lat", "49,025,534"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "993603"], ["station_name", "華山総合病院"], ["line_cd", "未上場"], ["pref_cd", "ｶｻﾞﾝｿｳｺﾞｳﾋﾞｮｳｲﾝ"], ["address", "904-2235"], ["lon", "沖縄県うるま市前原３７９９８"], ["lat", "58,142,540"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "840688"], ["station_name", "蒼海エンジニアリング"], ["line_cd", "上場"], ["pref_cd", "ｿｳｶｲｴﾝｼﾞﾆｱﾘﾝｸﾞ"], ["address", "019-1934"], ["lon", "秋田県大仙市南外田尻３７４５７"], ["lat", "15,298,875"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "111715"], ["station_name", "鳳凰情報システムズ"], ["line_cd", "上場"], ["pref_cd", "ﾎｳｵｳｼﾞｮｳﾎｳｼｽﾃﾑｽﾞ"], ["address", "036-1506"], ["lon", "青森県弘前市昴３８００６テラス昴３０８"], ["lat", "75,938,711"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "576041"], ["station_name", "松風電機"], ["line_cd", "上場"], ["pref_cd", "ﾏﾂｶｾﾞﾃﾞﾝｷ"], ["address", "731-5125"], ["lon", "広島県広島市佐伯区五日市駅前１－１９－１３ロイヤルパレス五日市駅前３１８"], ["lat", "19,159,384"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "298785"], ["station_name", "月影鉄工所"], ["line_cd", "上場"], ["pref_cd", "ﾂｷｶｹﾞﾃｯｺｳｼﾞｮ"], ["address", "854-0513"], ["lon", "長崎県雲仙市小浜町南本町３７１９８"], ["lat", "801,741"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "762081"], ["station_name", "春日化学"], ["line_cd", "上場"], ["pref_cd", "ｶｽｶﾞｶｶﾞｸ"], ["address", "600-8154"], ["lon", "京都府京都市下京区榎木町３７３３２"], ["lat", "10,263,424"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "689724"], ["station_name", "冬木鋼鉄"], ["line_cd", "未上場"], ["pref_cd", "ﾌﾕｷｺｳﾃﾂ"], ["address", "333-0808"], ["lon", "埼玉県川口市長蔵新田４４９９４長蔵新田レジデンス４０２"], ["lat", "69,104,409"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "853577"], ["station_name", "宇宙通信"], ["line_cd", "未上場"], ["pref_cd", "ｳﾁｭｳﾂｳｼﾝ"], ["address", "068-0424"], ["lon", "北海道夕張市千代田４４９６７"], ["lat", "50,413,890"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "801139"], ["station_name", "三日月製作所"], ["line_cd", "上場"], ["pref_cd", "ﾐｶﾂﾞｷｾｲｻｸｼﾞｮ"], ["address", "861-3524"], ["lon", "熊本県上益城郡山都町藤木４４９６１"], ["lat", "6,005,003"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "290502"], ["station_name", "星海化学"], ["line_cd", "上場"], ["pref_cd", "ｾｲｶｲｶｶﾞｸ"], ["address", "859-6314"], ["lon", "長崎県佐世保市吉井町田原４４９７４吉井町田原テラス３１９"], ["lat", "69,539,217"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "479936"], ["station_name", "蒼空物産"], ["line_cd", "上場"], ["pref_cd", "ｿｳｸｳﾌﾞｯｻﾝ"], ["address", "319-0325"], ["lon", "茨城県水戸市小林町３７６８４タウン小林町４１８"], ["lat", "15,707,446"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "128000"], ["station_name", "太陽銀行"], ["line_cd", "上場"], ["pref_cd", "ﾀｲﾖｳｷﾞﾝｺｳ"], ["address", "231-0814"], ["lon", "神奈川県横浜市中区豊浦町１－１９－１６豊浦町ランド３０１"], ["lat", "75,719,090"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "760105"], ["station_name", "黒崎電機"], ["line_cd", "上場"], ["pref_cd", "ｸﾛｻｷﾃﾞﾝｷ"], ["address", "964-0893"], ["lon", "福島県二本松市幸町３－１８－１８"], ["lat", "19,018,886"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "139376"], ["station_name", "鳳来製薬"], ["line_cd", "未上場"], ["pref_cd", "ﾎｳﾗｲｾｲﾔｸ"], ["address", "891-8328"], ["lon", "鹿児島県大島郡伊仙町崎原４－１７－２０"], ["lat", "65,521,630"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "746682"], ["station_name", "雲海物流"], ["line_cd", "未上場"], ["pref_cd", "ｳﾝｶｲﾌﾞﾂﾘｭｳ"], ["address", "923-0332"], ["lon", "石川県小松市湯上町４４９６９コート湯上町１０２"], ["lat", "16,741,166"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "614033"], ["station_name", "神風貿易"], ["line_cd", "上場"], ["pref_cd", "ｶﾐｶｾﾞﾎﾞｳｴｷ"], ["address", "709-0805"], ["lon", "岡山県赤磐市二井４５０２７キャッスル二井１１６"], ["lat", "29,300,364"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "997579"], ["station_name", "新月電子"], ["line_cd", "上場"], ["pref_cd", "ｼﾝｹﾞﾂﾃﾞﾝｼ"], ["address", "409-1315"], ["lon", "山梨県甲州市勝沼町等々力３８２０２"], ["lat", "79,853,120"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "246860"], ["station_name", "華蓮製紙"], ["line_cd", "未上場"], ["pref_cd", "ｶﾚﾝｾｲｼ"], ["address", "014-0202"], ["lon", "秋田県大仙市上鶯野４－２０－１８上鶯野荘３１４"], ["lat", "47,914,415"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "456140"], ["station_name", "桜花化学"], ["line_cd", "未上場"], ["pref_cd", "ｻｸﾗｶｶｶﾞｸ"], ["address", "410-0308"], ["lon", "静岡県沼津市柳沢３－１７－４柳沢タウン１０２"], ["lat", "5,353,683"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "510475"], ["station_name", "神楽銀行"], ["line_cd", "上場"], ["pref_cd", "ｶｸﾞﾗｷﾞﾝｺｳ"], ["address", "615-0905"], ["lon", "京都府京都市右京区梅津石灘町３７７７７梅津石灘町プレイス１０５"], ["lat", "6,601,871"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "953438"], ["station_name", "冬木織物"], ["line_cd", "未上場"], ["pref_cd", "ﾌﾕｷｵﾘﾓﾉ"], ["address", "319-3513"], ["lon", "茨城県久慈郡大子町大生瀬４４９９９"], ["lat", "44,112,307"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "596284"], ["station_name", "白鳥貿易"], ["line_cd", "上場"], ["pref_cd", "ﾊｸﾁｮｳﾎﾞｳｴｷ"], ["address", "648-0037"], ["lon", "和歌山県橋本市賢堂３８１５３ハウス賢堂３１５"], ["lat", "57,004,345"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "635871"], ["station_name", "星海建設"], ["line_cd", "上場"], ["pref_cd", "ｾｲｶｲｹﾝｾﾂ"], ["address", "639-0202"], ["lon", "奈良県北葛城郡上牧町桜ケ丘１－１６－８"], ["lat", "9,619,252"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "329299"], ["station_name", "紅陽製作所"], ["line_cd", "上場"], ["pref_cd", "ｺｳﾖｳｾｲｻｸｼﾞｮ"], ["address", "399-9211"], ["lon", "長野県北安曇郡白馬村神城４４９６５"], ["lat", "27,651,598"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "124960"], ["station_name", "三峰総合病院"], ["line_cd", "上場"], ["pref_cd", "ｻﾝﾎﾟｳｿｳｺﾞｳﾋﾞｮｳｲﾝ"], ["address", "709-0623"], ["lon", "岡山県岡山市東区城東台南１－１６－９"], ["lat", "42,931,896"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "500031"], ["station_name", "樹海物産"], ["line_cd", "未上場"], ["pref_cd", "ｼﾞｭｶｲﾌﾞｯｻﾝ"], ["address", "675-1376"], ["lon", "兵庫県小野市丸山町４－１７－１５"], ["lat", "11,539,220"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "709182"], ["station_name", "銀波通信"], ["line_cd", "未上場"], ["pref_cd", "ｷﾞﾝﾊﾂｳｼﾝ"], ["address", "986-1332"], ["lon", "宮城県石巻市雄勝町小島３７６５９"], ["lat", "32,897,681"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "704913"], ["station_name", "黒石金属"], ["line_cd", "上場"], ["pref_cd", "ｸﾛｲｼｷﾝｿﾞｸ"], ["address", "039-3353"], ["lon", "青森県東津軽郡平内町田茂木３７７７８"], ["lat", "51,948,473"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "237327"], ["station_name", "春日産業"], ["line_cd", "未上場"], ["pref_cd", "ｶｽｶﾞｻﾝｷﾞｮｳ"], ["address", "930-2101"], ["lon", "富山県富山市山田中瀬３７５４４山田中瀬テラス２０４"], ["lat", "7,658,120"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "455225"], ["station_name", "太陽酒造"], ["line_cd", "未上場"], ["pref_cd", "ﾀｲﾖｳｼｭｿﾞｳ"], ["address", "018-2805"], ["lon", "秋田県能代市轟１－１６－６"], ["lat", "23,052,827"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "596671"], ["station_name", "緑葉興産"], ["line_cd", "未上場"], ["pref_cd", "ﾘｮｸﾖｳｺｳｻﾝ"], ["address", "669-3163"], ["lon", "兵庫県丹波市山南町山本３７４０８山南町山本ヴィレッジ４１８"], ["lat", "3,116,989"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "459375"], ["station_name", "白虹エンジニアリング"], ["line_cd", "未上場"], ["pref_cd", "ﾊｸｺｳｴﾝｼﾞﾆｱﾘﾝｸﾞ"], ["address", "571-0009"], ["lon", "大阪府門真市下馬伏町３８１５６下馬伏町プレシャス３０５"], ["lat", "12,859,498"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "142936"], ["station_name", "東洋鋼鉄"], ["line_cd", "未上場"], ["pref_cd", "ﾄｳﾖｳｺｳﾃﾂ"], ["address", "851-0244"], ["lon", "長崎県長崎市大崎町４４９９３大崎町スカイ４０２"], ["lat", "15,996,134"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "530860"], ["station_name", "瑞宝銀行"], ["line_cd", "未上場"], ["pref_cd", "ｽﾞｲﾎｳｷﾞﾝｺｳ"], ["address", "939-0508"], ["lon", "富山県富山市水橋西浜町４５０２１水橋西浜町タワー２０８"], ["lat", "10,279,541"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "310637"], ["station_name", "千羽鶴製薬"], ["line_cd", "上場"], ["pref_cd", "ｾﾝﾊﾞﾂﾙｾｲﾔｸ"], ["address", "400-0203"], ["lon", "山梨県南アルプス市徳永４４９２７"], ["lat", "58,743,119"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "145951"], ["station_name", "金星興業"], ["line_cd", "未上場"], ["pref_cd", "ｷﾝｾｲｺｳｷﾞｮｳ"], ["address", "959-0416"], ["lon", "新潟県新潟市西蒲区浦村４－１８－１浦村の杜４１７"], ["lat", "766,655"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "588298"], ["station_name", "流星通信"], ["line_cd", "上場"], ["pref_cd", "ﾘｭｳｾｲﾂｳｼﾝ"], ["address", "292-0033"], ["lon", "千葉県木更津市犬成４５０２５"], ["lat", "7,600,193"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "612900"], ["station_name", "紅葉製紙"], ["line_cd", "上場"], ["pref_cd", "ｺｳﾖｳｾｲｼ"], ["address", "988-0207"], ["lon", "宮城県気仙沼市岩月宝ケ沢４４９６９"], ["lat", "40,357,396"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "141950"], ["station_name", "青山織物"], ["line_cd", "未上場"], ["pref_cd", "ｱｵﾔﾏｵﾘﾓﾉ"], ["address", "300-2442"], ["lon", "茨城県つくばみらい市西ノ台１－１６－１９"], ["lat", "29,020,619"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "505588"], ["station_name", "金星金属"], ["line_cd", "未上場"], ["pref_cd", "ｷﾝｾｲｷﾝｿﾞｸ"], ["address", "746-0051"], ["lon", "山口県周南市御姫町１－２０－５"], ["lat", "93,966,217"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "519097"], ["station_name", "月光酒造"], ["line_cd", "上場"], ["pref_cd", "ｹﾞﾂｺｳｼｭｿﾞｳ"], ["address", "633-2144"], ["lon", "奈良県宇陀市大宇陀栗野３－１４－１３大宇陀栗野グランド３１３"], ["lat", "5,483,233"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "216402"], ["station_name", "大海物産"], ["line_cd", "未上場"], ["pref_cd", "ﾀｲｶｲﾌﾞｯｻﾝ"], ["address", "933-0803"], ["lon", "富山県高岡市出来田３８２０６"], ["lat", "2,629,772"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "753537"], ["station_name", "日本総合病院"], ["line_cd", "未上場"], ["pref_cd", "ﾆﾎﾝｿｳｺﾞｳﾋﾞｮｳｲﾝ"], ["address", "518-1417"], ["lon", "三重県伊賀市富永４－１５－９"], ["lat", "75,208,482"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "448736"], ["station_name", "星野貿易"], ["line_cd", "上場"], ["pref_cd", "ﾎｼﾉﾎﾞｳｴｷ"], ["address", "370-0117"], ["lon", "群馬県伊勢崎市境百々３７９３４境百々スイート２１５"], ["lat", "9,851,878"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "116297"], ["station_name", "白雪産業"], ["line_cd", "未上場"], ["pref_cd", "ｼﾛﾕｷｻﾝｷﾞｮｳ"], ["address", "039-1542"], ["lon", "青森県三戸郡五戸町中道十文字４５００４"], ["lat", "37,086,949"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "471842"], ["station_name", "楓木繊維"], ["line_cd", "未上場"], ["pref_cd", "ｶｴﾃﾞｷｾﾝｲ"], ["address", "923-0072"], ["lon", "石川県小松市みどり町４－１７－１６フォレストみどり町２０６"], ["lat", "3,206,841"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "649811"], ["station_name", "清水建設"], ["line_cd", "未上場"], ["pref_cd", "ｼﾐｽﾞｹﾝｾﾂ"], ["address", "899-3515"], ["lon", "鹿児島県南さつま市金峰町中津野３８２６３"], ["lat", "30,526,624"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "318374"], ["station_name", "神楽エンジニアリング"], ["line_cd", "未上場"], ["pref_cd", "ｶｸﾞﾗｴﾝｼﾞﾆｱﾘﾝｸﾞ"], ["address", "606-8384"], ["lon", "京都府京都市左京区新生洲町３６９０４"], ["lat", "29,639,231"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "469222"], ["station_name", "夏木興産"], ["line_cd", "未上場"], ["pref_cd", "ﾅﾂｷｺｳｻﾝ"], ["address", "859-4306"], ["lon", "長崎県松浦市鷹島町原免４４９９１"], ["lat", "26,167,425"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "406631"], ["station_name", "蒼海化学"], ["line_cd", "上場"], ["pref_cd", "ｿｳｶｲｶｶﾞｸ"], ["address", "240-0015"], ["lon", "神奈川県横浜市保土ケ谷区岩崎町４４９７７プラザ岩崎町３０９"], ["lat", "7,244,291"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "287155"], ["station_name", "春日製作所"], ["line_cd", "上場"], ["pref_cd", "ｶｽｶﾞｾｲｻｸｼﾞｮ"], ["address", "112-0012"], ["lon", "東京都文京区大塚３７１２０ハウス大塚２０４"], ["lat", "16,338,898"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "599219"], ["station_name", "太陽物流"], ["line_cd", "上場"], ["pref_cd", "ﾀｲﾖｳﾌﾞﾂﾘｭｳ"], ["address", "812-0011"], ["lon", "福岡県福岡市博多区博多駅前１－１４－６"], ["lat", "27,137,233"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "195092"], ["station_name", "旭山通信"], ["line_cd", "上場"], ["pref_cd", "ｱｻﾋﾔﾏﾂｳｼﾝ"], ["address", "996-0213"], ["lon", "山形県最上郡大蔵村赤松４－１４－６赤松スカイ４１０"], ["lat", "31,904,185"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Create (0.1ms)[0m  [1m[32mINSERT INTO "dummy_company_informations" ("station_g_cd", "station_name", "line_cd", "pref_cd", "address", "lon", "lat") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["station_g_cd", "572146"], ["station_name", "鳳凰貿易"], ["line_cd", "未上場"], ["pref_cd", "ﾎｳｵｳﾎﾞｳｴｷ"], ["address", "910-1305"], ["lon", "福井県吉田郡永平寺町竹原３７９０４"], ["lat", "35,701,029"]]
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ lib/tasks/import.rake:31:in `block (2 levels) in <main>'
+  [1m[36mDummyCompanyInformation Load (0.5ms)[0m  [1m[34mSELECT "dummy_company_informations".* FROM "dummy_company_informations"[0m

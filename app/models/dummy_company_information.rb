@@ -1,0 +1,2 @@
+class DummyCompanyInformation < ApplicationRecord
+end
